@@ -38,7 +38,7 @@ Failure to find a matching type can lead to an application crash if we attempt t
   
  ## A Simple Example
  
- Most container-based dependency injection systems require you to define in some way that a given service type is available for injection and many reqire some sort of factory or mechanism that will provide a new instance of the service when needed.
+ Most container-based dependency injection systems require you to define in some way that a given service type is available for injection and many require some sort of factory or mechanism that will provide a new instance of the service when needed.
  
  Factory is no exception. Here's a simple dependency registraion.
  
@@ -69,7 +69,7 @@ Similar to a `View` in SwiftUI, a `Factory` is a lightweight struct that exists 
 static let myService = Factory { MyService() as MyServiceType }
 ```
 
-The type of a factory is inferred from the return type of the closure. Here's we're casting `MyService` to the protocol it implements, so any dependency returned by this factory will always conform to `MyServiceType`. 
+The type of a factory is inferred from the return type of the closure. Here we're casting `MyService` to the protocol it implements, so any dependency returned by this factory will always conform to `MyServiceType`. 
 
 We can also get the same result by explicitly specializing the generic Factory as shown below. Both the specialization and the cast are equivalent and provide the same result.
 
@@ -95,7 +95,7 @@ class ContentViewModel: ObservableObject {
     ...
 }
 ```
-Just call the desired specific factory as a function and you'll get an instance of its managed dpendency. It's that simple.
+Just call the desired specific factory as a function and you'll get an instance of its managed dependency. It's that simple.
 
 *You can access the factory directly or the property wrapper if you prefer, but either way for clarity I'd suggest grouping all of a given object's dependencies in a single place near the top of the class and marking them as private.*
 
@@ -136,7 +136,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 
-Note the line in our preview code where we’re gone back to our container and registered a new closure on our factory. This function overrides the default factory closure.
+Note the line in our preview code where we've gone back to our container and registered a new closure on our factory. This function overrides the default factory closure.
 
 Now when our preview is displayed `ContentView` creates a `ContentViewModel` which in turn has a dependency on `myService` using the `Injected` property wrapper. 
 
